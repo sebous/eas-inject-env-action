@@ -1,0 +1,62 @@
+{
+  "cli": {
+    "version": ">= 2.3.0"
+  },
+  "build": {
+    "base": {
+      "ios": {
+        "resourceClass": "medium"
+      }
+    },
+    "development": {
+      "extends": "base",
+      "developmentClient": false,
+      "distribution": "store",
+      "channel": "dev",
+      "env": {
+        "ONE": "1",
+        "TWO": "2"
+      }
+    },
+    "staging": {
+      "extends": "base",
+      "developmentClient": false,
+      "env": {},
+      "distribution": "store",
+      "channel": "staging"
+    },
+    "production": {
+      "extends": "base",
+      "developmentClient": false,
+      "env": {},
+      "distribution": "store",
+      "channel": "production"
+    }
+  },
+  "submit": {
+    "base": {
+      "ios": {
+        "companyName": "Ten Thousand Me LLC",
+        "appleTeamId": "5XGQA76PWK"
+      }
+    },
+    "development": {
+      "extends": "base",
+      "ios": {
+        "ascAppId": "6475682762"
+      }
+    },
+    "staging": {
+      "extends": "base",
+      "ios": {
+        "ascAppId": "6476497743"
+      }
+    },
+    "production": {
+      "extends": "base",
+      "ios": {
+        "ascAppId": "6476554226"
+      }
+    }
+  }
+}

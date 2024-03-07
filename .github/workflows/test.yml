@@ -1,0 +1,28 @@
+# The main CI workflow, running only on PRs, checking code-quality and running tests.
+
+name: Testing
+on: workflow_dispatch
+env:
+  eas_env: development
+  env_vars: |-
+    ONE=1
+    TWO=2
+  eas_json_path: ../../eas.json
+jobs:
+  test:
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: whatevs
+        run: |
+          echo ${{ github.workspace }}
+          ${{ github.workspace }}/inject-env.sh -i ${{ env.eas_env }} -e ${{ env.env_vars }} -j ${{ env.eas_json_path }}
+
+      # - uses: ./.github/actions/inject-env
+      #   name: inject env
+      #   with:
+      #     eas_env: development
+      #     env_vars: |-
+      #       ONE=1
+      #       TWO=2
+      #     eas_json_path: ./eas.json
