@@ -1,5 +1,8 @@
 name: EAS inject env vars
 description: Inject environment variables into eas.json file
+branding:
+  icon: terminal
+  color: gray-dark
 inputs:
   eas_env:
     description: "EAS environment"
@@ -17,4 +20,4 @@ runs:
     - id: load_env
       shell: bash
       run: |
-        ./inject-env.sh -i '${{ inputs.env_vars }}' -e ${{ inputs.eas_env }} -p ${{ inputs.eas_json_path }}
+        ${GITHUB_ACTION_PATH}/inject-env.sh -i '${{ inputs.env_vars }}' -e ${{ inputs.eas_env }} -p ${{ inputs.eas_json_path }}

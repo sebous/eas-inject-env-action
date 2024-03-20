@@ -1,0 +1,54 @@
+---
+name: tests
+on:
+  push:
+  pull_request:
+jobs:
+  tests:
+    name: Run tests
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Create test eas.json file
+        run: |
+          echo '{
+            "build": {
+              "base": {},
+              "development": {
+                "env": {"VAR1": "some old value"}
+              },
+              "production": {}
+            }
+          }' > eas.json
+
+      - name: Multiple values
+        uses: ./
+        with:
+          eas_env: development
+          eas_json_path: eas.json
+          env_vars: |-
+            VAR1=val1
+            VAR2=val2
+
+      - name: assert multiple
+        run: |
+          var1=$(jq -r '.build.development.env.VAR1' eas.json)
+          var2=$(jq -r '.build.development.env.VAR2' eas.json)
+          [[ "$var1" == "val1" ]]
+          [[ "$var2" == "val2" ]]
+
+      - name: Single value
+        uses: ./
+        with:
+          eas_env: production
+          eas_json_path: eas.json
+          env_vars: VAR3=val3
+
+      - name: assert single
+        run: |
+          var3=$(jq -r '.build.production.env.VAR3' eas.json)
+          [[ "$var3" == "val3" ]]
