@@ -1,8 +1,0 @@
-{
-  "defaults": {
-    "runs-on": "ubuntu-latest"
-  },
-  "composite": {
-    "path": ".github/actions"
-  }
-}

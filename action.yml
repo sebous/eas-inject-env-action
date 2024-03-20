@@ -1,5 +1,5 @@
-name: My Action
-description: My custom action
+name: Inject Environment Variables into eas.json
+description: Inject Environment Variables into eas.json
 inputs:
   eas_env:
     description: "EAS environment"
@@ -8,7 +8,7 @@ inputs:
     description: "Environment variable key-value pairs"
     required: true
   eas_json_path:
-    description: "Path to EAS JSON file"
+    description: "Path to eas.json file"
     required: true
 
 runs:
@@ -17,5 +17,4 @@ runs:
     - id: load_env
       shell: bash
       run: |
-        ./inject-env.sh -i ${{ inputs.eas_env }} -e ${{ inputs.env_vars }} -j ${{ inputs.eas_json_path }}
-        echo "Environment variables loaded into eas.json file"
+        ./inject-env.sh -i '${{ inputs.env_vars }}' -e ${{ inputs.eas_env }} -p ${{ inputs.eas_json_path }}
