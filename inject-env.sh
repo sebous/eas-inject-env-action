@@ -42,4 +42,4 @@ jq --arg env "$env" --argjson json "$json" '.build[$env].env = $json' $path >tem
 mv temp.json $path
 
 keys=$(jq -nR '[inputs | select(test("^[^#][^|-]")) | split("=") | .[0]]' <<<"$input")
-echo echo "Environment variables loaded into eas.json file: $keys"
+echo "Environment variables loaded into eas.json file: $keys"
