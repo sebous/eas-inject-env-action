@@ -1,5 +1,5 @@
-name: Inject Environment Variables into eas.json
-description: Inject Environment Variables into eas.json
+name: EAS inject env vars
+description: Inject environment variables into eas.json file
 inputs:
   eas_env:
     description: "EAS environment"
